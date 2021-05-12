@@ -72,6 +72,7 @@ function initializeApp() {
         document.getElementById("tampilKaloLogin").classList.remove('hidden');
         document.getElementById("tampilTanpaLogin").classList.add('hidden');
         document.getElementById('liffLoginButton').disabled = true;
+        addProfile();
     } else {
         document.getElementById('liffLogoutButton').disabled = true;
     }
@@ -124,7 +125,7 @@ function addProfile(){
     liff.getProfile()
     .then(profile => {
       nama = profile.displayName;
-      lineProfile.innerHTML = `<p class="text-center">Selamat Datang <b>${nama}</b>, yuk pesan menunya sekarang!</>`;
+      lineProfile.innerHTML = `${nama}`;
       })
     .catch((err) => {
       console.log('error', err);
@@ -179,9 +180,9 @@ function registerButtonHandlers() {
         } else {
             liff.sendMessages([{
                 'type': 'text',
-                'text': `Anda telah menggunakan fitur Send Message! ${Struk} Terima Kasih` 
+                'text': `${Struk} Terima Kasih` 
             }]).then(function() {
-                window.alert('Ini adalah pesan dari fitur Send Message');
+                window.alert('Terima Kasih Sudah Belanja!');
             }).catch(function(error) {
                 window.alert('Error sending message: ' + error);
             });
@@ -192,7 +193,7 @@ function registerButtonHandlers() {
 
 function buttonJajanListener() {
 
-    // let namaUser = document.getElementById("getProfileAcc");
+    let namaUser = document.getElementById("getProfileAcc");
 
 
 
@@ -206,7 +207,7 @@ function buttonJajanListener() {
     
     let sub_harga1 = document.getElementById("harga");
     
-    let sub_harga2 = document.getElementById("Harga2");
+    let sub_harga2 = document.getElementById("harga2");
     
     let sub_harga3 = document.getElementById("harga3");
     
@@ -215,7 +216,7 @@ function buttonJajanListener() {
     let total_harga = document.getElementById("total");
     
     
-    let strukBelanja = "Hai, \n\n" +
+    let strukBelanja = "Hai, " + namaUser.innerHTML + "\n\n" +
     
         "Terimakasih telah memesan makanan dan minuman di Trusty Cafe! \n" +
     
